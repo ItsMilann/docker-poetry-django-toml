@@ -1,0 +1,16 @@
+*.pyc
+static/
+media/
+./project/*/__pycache__/*.pyc
+logs/
+db.sqlite3
+_postgres_data/
+_redis_data/
+docker-compose.yaml
+nginx/*
+!nginx/nginx-proxy.conf.example
+project/project/settings/*
+!project/project/settings/example.py
+!project/project/settings/base.py
+local
+env.txt
