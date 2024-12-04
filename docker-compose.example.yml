@@ -2,19 +2,21 @@ version: "3"
 
 services:
   db:
-    image: postgres:14.5-alpine
-    container_name: template_postgres
+    image: postgres:16.6-alpine
+    container_name: db-postgres
     restart: always
     volumes:
-      - _postgres_data:/var/lib/postgresql/data/
+      # for mac: 
+      # _postgres_data:/var/lib/postgresql/data/
+      - ./_postgres_data:/var/lib/postgresql/data/
     env_file:
       - env.txt
     networks:
       - v-network
   web:
-    image: project/template:0.0.1
+    image: boilerplate:0.0.1
     restart: always
-    container_name: template_web
+    container_name: backends
     volumes:
       - ./sock/:/sock/
       - ./project/:/usr/src/app/
@@ -27,12 +29,9 @@ services:
       - v-network
     environment:
       - PYTHONUNBUFFERED=1
-    ports:
-      - 8000:8000
-
   nginx:
     image: nginx:latest
-    container_name: template_nginx
+    container_name: nginx
     restart: always
     ports:
       - 80:80
@@ -53,6 +52,6 @@ networks:
   v-network:
     external: false
 
-# NOTE: remove this if you're not on mac with ARM chip
-volumes:
-  _postgres_data:
+# NOTE: for mac declare follwing volumes
+# volumes:
+#  _postgres_data:
