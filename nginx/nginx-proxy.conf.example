@@ -4,6 +4,8 @@ upstream varicon_server {
 upstream daphne_websocket {
     server unix:///sock/daphne.sock;
 }
+
+
 server {
     listen 0.0.0.0:80;
     charset utf-8;
@@ -31,7 +33,7 @@ server {
         root /var/www/;
     }
     location / {
-        root /var/www/frontend;
-        try_files $uri $uri/ /index.html;
+          root /var/www/frontend;
+          try_files $uri $uri/ /index.html;
         }
 }

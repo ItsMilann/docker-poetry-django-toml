@@ -1,4 +1,4 @@
-FROM python:3.11.7-slim as development_build
+FROM python:3.11.7-slim AS development_build
 
 ARG DJANGO_ENV
 
